@@ -1,10 +1,9 @@
 const http = require('http');
 const ejs = require('ejs');
 const fs = require('fs');
-const {parse} =  require("querystring")
+const {parse} =  require('querystring')
 
 http.createServer(function (request, response) {
-   // response.write('Hello From NodeJS!');
 
     //read the home.ejs file (__dirname+> is the path of the root dir)
     const filePath = __dirname + '/views' + '/home.ejs'
@@ -23,21 +22,17 @@ http.createServer(function (request, response) {
             body += chunk.toString();
         })
 
-    /*    console.log(body)
-        console.log(parse(body))  */
-
         request.on('end', function(){
             todos.push(parse(body).todo)
+            console.log(parse(body).todo)
             response.writeHead(200, {'Content-Type':'text/html'})
             const output = ejs.render(file, {todos});
-    
-    response.end(output);
+            response.end(output);
         }) 
     }else{
         response.writeHead(200, {'Content-Type':'text/html'})
         const output = ejs.render(file, {todos});
         response.end(output);
     }
-
     
 }).listen(3000);
