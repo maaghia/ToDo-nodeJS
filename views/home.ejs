@@ -1,16 +1,54 @@
-<h1>ToDo App</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ToDo App</h1>
 <h3>My List For : <%= date %> </h3>
 
 <div>
     <ul>
         <% todos.forEach(function(todo) { %>
-            <li><%= todo %></li>
+            <li><span><input type="radio" unchecked></span> <%= todo %></li>
         <% }) %>
         
     </ul>
 
     <%- include(addPath); %> 
 </div>
+</body>
+</html>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&display=swap');
+
+    html{
+        background-color: rgb(247, 214, 219);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        text-align: center;
+    }
+    h1{
+        color: rgb(79, 79, 79);
+    }
+    ul{
+        list-style: none;
+        text-align: left;
+    }
+    input[type="radio"]:checked{
+        
+    }
+    
+</style>
+
+
+
 
 
 

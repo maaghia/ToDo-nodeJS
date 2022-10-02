@@ -3,8 +3,11 @@ const ejs = require('ejs');
 const fs = require('fs');
 const {parse} =  require('querystring')
 //database
-const mysql = require('mysql');
-const { createConnection } = require('net');
+//import { initializeApp } from 'firebase/app';
+
+/* const mysql = require('mysql');
+const { createConnection } = require('net'); */
+
 //date
 const moment = require('moment');
 
