@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MyToDo</title>
 </head>
 <body>
     <h1>ToDo App</h1>
@@ -13,7 +13,7 @@
 <div>
     <ul>
         <% todos.forEach(function(todo) { %>
-            <li><span><input type="radio" unchecked></span> <%= todo %></li>
+            <li id="task"><span><input type="checkbox" id="task-state" ></span> <%= todo %></li>
         <% }) %>
         
     </ul>
@@ -40,13 +40,26 @@
     ul{
         list-style: none;
         text-align: left;
-    }
-    input[type="radio"]:checked{
-        
-    }
+    } 
     
 </style>
 
+
+<script>
+let task =  document.getElementById('task');
+let taskState = document.getElementById('task-state');
+//radio input event listener
+   // task.forEach(task =>{
+        taskState.addEventListener("change", e => {
+            if(e.target.checked){
+                task.style.textDecoration = "line-through"
+                console.log("task done")
+            }  
+        });
+ //   })
+        
+        
+</script>
 
 
 

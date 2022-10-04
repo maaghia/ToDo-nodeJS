@@ -10,12 +10,17 @@ const { createConnection } = require('net'); */
 
 //date
 const moment = require('moment');
+const { Script } = require('vm');
 
 //add today's date 
 let timing = moment();
 const date = timing.format("dddd, Do MMM YYYY")
  
 const addPath = __dirname + '/views' + '/add.ejs'
+
+//current to do list 
+const todos = ['prepare the ES lab', 'finish solving the PL recitation', 'review CLA lecture']
+
 http.createServer(function (request, response) {
 
     //read the home.ejs file (__dirname+> is the path of the root dir)
@@ -23,10 +28,6 @@ http.createServer(function (request, response) {
     
     const file = fs.readFileSync(filePath, 'utf8')
    
-    
-    //current to do list 
-    const todos = ['prepare the ES lab', 'finish solving the PL recitation', 'review CLA lecture']
-    
     if (request.url === '/add'){
 
         let body = '';
@@ -50,6 +51,7 @@ http.createServer(function (request, response) {
     }
     
 }).listen(3000);
+
 
 //database part
 /* 
