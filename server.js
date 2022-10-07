@@ -7,6 +7,43 @@ const {parse} =  require('querystring')
 
 /* const mysql = require('mysql');
 const { createConnection } = require('net'); */
+const {Sequelize, DataTypes, TimeoutError} = require('sequelize')
+
+const sequelize =  new Sequelize({
+    dialect: "sqlite",
+    storage: "bd.sqlite",
+});
+//testing...
+sequelize.authenticate().then((data)=>{
+    console.log("Connection has been established successfully");
+})
+.catch((err)=>{
+    console.log("Unable to connect to the data base")
+})
+const Todo = sequelize.define('todo', {
+    id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4, //or DataTypes.UUIDV1,
+        primaryKey: TimeoutError,
+    },
+    title: DataTypes.TEXT,
+    completed: DataTypes.BOOLEAN
+})
+console.log(Todo === sequelize.models.Todo) //true
+
+
+//create a new todo item
+const main = async () => {
+    await sequelize.sync({ force: true });
+      
+    const newTodo = Todo.build({title: "test todo", completed: false})
+    await newTodo.save();
+
+    
+    console.log("--------------------------")
+    console.log(todos)
+}
+main();
 
 //date
 const moment = require('moment');
@@ -18,8 +55,9 @@ const date = timing.format("dddd, Do MMM YYYY")
  
 const addPath = __dirname + '/views' + '/add.ejs'
 
+
 //current to do list 
-const todos = ['prepare the ES lab', 'finish solving the PL recitation', 'review CLA lecture']
+const todos = []
 
 http.createServer(function (request, response) {
 
@@ -28,6 +66,12 @@ http.createServer(function (request, response) {
     
     const file = fs.readFileSync(filePath, 'utf8')
    
+        
+    //css
+   /*  var requiredPath = url.parse(http.request.url).pathname
+    console.log(requiredPath);
+ */
+    
     if (request.url === '/add'){
 
         let body = '';
